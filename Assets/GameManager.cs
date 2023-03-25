@@ -88,10 +88,7 @@ public class GameManager : MonoBehaviour
         var freeNodes = _nodes.Where(n => n.OccupiedBlock == null).OrderBy(b => Random.value).ToList();
         foreach (var node in freeNodes.Take(amount))
         {
-            var block = Instantiate(_blockPrefab, node.Pos,Quaternion.identity);
-block.Init(GetBlockTypeByValue(Random.value > 0.8f ? 4 : 2));
-        block.SetBlock(node);
-        _blocks.Add(block);
+            SpawnBlock(node, Random.value > 0.8f ? 4:2);
         }
 
         if (freeNodes.Count() == 1)
@@ -102,8 +99,17 @@ block.Init(GetBlockTypeByValue(Random.value > 0.8f ? 4 : 2));
         ChangeState(GameState.WaitingInputs);
     }
 
+    void SpawnBlock(Node node,int value)
+    {
+        var block = Instantiate(_blockPrefab, node.Pos,Quaternion.identity);
+        block.Init(GetBlockTypeByValue(value));
+        block.SetBlock(node);
+        _blocks.Add(block);
+    }
     void Shift(Vector2 dir)
     {
+        ChangeState(GameState.Moving);
+        
         var orderedBlocks = _blocks.OrderBy(b => b.Pos.x)
             .ThenBy(b => b.Pos.y).ToList();
         if (dir == Vector2.right || dir == Vector2.up) orderedBlocks.Reverse();
@@ -119,14 +125,51 @@ block.Init(GetBlockTypeByValue(Random.value > 0.8f ? 4 : 2));
                 if (possibleNode != null)
                 {
                     //Node is present
-                    if (possibleNode.OccupiedBlock == null) next = possibleNode;
+                    if (possibleNode.OccupiedBlock != null && possibleNode.OccupiedBlock.CanMerge(block.Value))
+                    {
+                        block.MergeBlock(possibleNode.OccupiedBlock);
+                        
+                    }
+                    else if (possibleNode.OccupiedBlock == null) next = possibleNode;
+                    //None hit? End do while loop
                 }
             } while (next != block.Node);
 
-            block.transform.DOMove(block.Node.Pos, _travelTime);
+            
         }
+
+        var sequence = DOTween.Sequence();
+
+        foreach (var block in orderedBlocks)
+        {
+            var movePoint = block.MergingBlock != null ? block.MergingBlock.Node.Pos : block.Node.Pos;
+            sequence.Insert(0, block.transform.DOMove(movePoint, _travelTime));
+        }
+
+        sequence.OnComplete(() =>
+        {
+            foreach (var block in orderedBlocks.Where(b => b.MergingBlock != null))
+            {
+                MergeBlocks(block.MergingBlock,block);
+            }
+            
+            ChangeState(GameState.SpawningBlocks);
+        });
+
     }
 
+    void MergeBlocks(Block baseBlock, Block mergingBlock)
+    {
+        SpawnBlock(baseBlock.Node, baseBlock.Value *2);
+        RemoveBlock(baseBlock);
+        RemoveBlock(mergingBlock);
+    }
+
+    void RemoveBlock(Block block)
+    {
+        _blocks.Remove(block);
+        Destroy(block.gameObject);
+    }
     Node GetNodeAtPosition(Vector2 pos)
     {
         return _nodes.FirstOrDefault(n => n.Pos == pos);
