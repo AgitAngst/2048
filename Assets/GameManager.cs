@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -14,6 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Block _blockPrefab;
     [SerializeField] private SpriteRenderer _boardPrefab;
     [SerializeField] private List<BlockType> _types;
+    [SerializeField] private float _travelTime = 0.25f;
     private List<Node> _nodes;
     private List<Block> _blocks;
     private GameState _state;
@@ -29,6 +31,10 @@ public class GameManager : MonoBehaviour
         if (_state != GameState.WaitingInputs) return;
 
         if (Input.GetKeyDown(KeyCode.LeftArrow)) Shift(Vector2.left);
+        if (Input.GetKeyDown(KeyCode.RightArrow)) Shift(Vector2.right);
+        if (Input.GetKeyDown(KeyCode.UpArrow)) Shift(Vector2.up);
+        if (Input.GetKeyDown(KeyCode.DownArrow)) Shift(Vector2.down);
+
         
     }
 
@@ -117,7 +123,7 @@ block.Init(GetBlockTypeByValue(Random.value > 0.8f ? 4 : 2));
                 }
             } while (next != block.Node);
 
-            block.transform.position = block.Node.Pos;
+            block.transform.DOMove(block.Node.Pos, _travelTime);
         }
     }
 
