@@ -24,6 +24,14 @@ public class GameManager : MonoBehaviour
         ChangeState(GameState.GenerateLevel);
     }
 
+    private void Update()
+    {
+        if (_state != GameState.WaitingInputs) return;
+
+        if (Input.GetKeyDown(KeyCode.LeftArrow)) Shift(Vector2.left);
+        
+    }
+
     private void ChangeState(GameState newState)
     {
         _state = newState;
@@ -76,6 +84,8 @@ public class GameManager : MonoBehaviour
         {
             var block = Instantiate(_blockPrefab, node.Pos,Quaternion.identity);
 block.Init(GetBlockTypeByValue(Random.value > 0.8f ? 4 : 2));
+        block.SetBlock(node);
+        _blocks.Add(block);
         }
 
         if (freeNodes.Count() == 1)
@@ -83,9 +93,38 @@ block.Init(GetBlockTypeByValue(Random.value > 0.8f ? 4 : 2));
             //Lost
             return;
         }
+        ChangeState(GameState.WaitingInputs);
     }
 
-    
+    void Shift(Vector2 dir)
+    {
+        var orderedBlocks = _blocks.OrderBy(b => b.Pos.x)
+            .ThenBy(b => b.Pos.y).ToList();
+        if (dir == Vector2.right || dir == Vector2.up) orderedBlocks.Reverse();
+
+        foreach (var block in orderedBlocks)
+        {
+            var next = block.Node;
+            do
+            {
+                block.SetBlock(next);
+                var possibleNode = GetNodeAtPosition(next.Pos + dir);
+
+                if (possibleNode != null)
+                {
+                    //Node is present
+                    if (possibleNode.OccupiedBlock == null) next = possibleNode;
+                }
+            } while (next != block.Node);
+
+            block.transform.position = block.Node.Pos;
+        }
+    }
+
+    Node GetNodeAtPosition(Vector2 pos)
+    {
+        return _nodes.FirstOrDefault(n => n.Pos == pos);
+    }
 }
 
 [Serializable]
