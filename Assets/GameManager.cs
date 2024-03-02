@@ -6,7 +6,8 @@ using DG.Tweening;
 using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
-using UnityEngine.SceneManagement; 
+using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,6 +20,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float _travelTime = 0.25f;
     [SerializeField] private int _winCondition = 2048;
     [SerializeField] private GameObject _winScreen, _loseScreen;
+    [SerializeField] private TextMeshProUGUI _textCurrentScore;
+    [SerializeField] private TextMeshProUGUI _textHighScore;
+
+    private int _currentScore = 0;
+    private int _highScore = 0;
+
     private List<Node> _nodes;
     private List<Block> _blocks;
     private GameState _state;
@@ -171,6 +178,13 @@ public class GameManager : MonoBehaviour
     void MergeBlocks(Block baseBlock, Block mergingBlock)
     {
         SpawnBlock(baseBlock.Node, baseBlock.Value *2);
+        _currentScore += (baseBlock.Value * 2);
+        _textCurrentScore.text = _currentScore.ToString();
+        if (_currentScore >= _highScore)
+        {
+            _highScore = _currentScore;
+            _textHighScore.text = _highScore.ToString();
+        }
         RemoveBlock(baseBlock);
         RemoveBlock(mergingBlock);
     }
