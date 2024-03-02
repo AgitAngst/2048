@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _winScreen, _loseScreen;
     [SerializeField] private TextMeshProUGUI _textCurrentScore;
     [SerializeField] public TextMeshProUGUI _textHighScore;
+    [SerializeField] public SaveSytem saveSytem;
 
     private int _currentScore = 0;
     public int _highScore = 0;
@@ -43,11 +44,18 @@ public class GameManager : MonoBehaviour
         if (_state != GameState.WaitingInputs) return;
 
         if (Input.GetKeyDown(KeyCode.LeftArrow)) Shift(Vector2.left);
+        if (Input.GetKeyDown(KeyCode.A)) Shift(Vector2.left);
         if (Input.GetKeyDown(KeyCode.RightArrow)) Shift(Vector2.right);
+        if (Input.GetKeyDown(KeyCode.D)) Shift(Vector2.right);
         if (Input.GetKeyDown(KeyCode.UpArrow)) Shift(Vector2.up);
+        if (Input.GetKeyDown(KeyCode.W)) Shift(Vector2.up);
         if (Input.GetKeyDown(KeyCode.DownArrow)) Shift(Vector2.down);
+        if (Input.GetKeyDown(KeyCode.S)) Shift(Vector2.down);
 
-        
+
+
+
+
     }
 
     public void Reset()
@@ -57,13 +65,11 @@ public class GameManager : MonoBehaviour
 
     public void SaveScore()
     {
-        YandexGame.savesData.highScore = _highScore;
-        YandexGame.SaveProgress();
+        saveSytem.SaveSettings();
     }
     public void LoadScore()
     {
-        YandexGame.LoadProgress();
-        _highScore = YandexGame.savesData.highScore;
+       saveSytem.LoadSettings();
     }
 
     public void ResetScore()
@@ -143,6 +149,7 @@ public class GameManager : MonoBehaviour
         block.Init(GetBlockTypeByValue(value));
         block.SetBlock(node);
         _blocks.Add(block);
+
     }
     void Shift(Vector2 dir)
     {
