@@ -6,6 +6,7 @@ using DG.Tweening;
 using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using UnityEngine.SceneManagement; 
 
 public class GameManager : MonoBehaviour
 {
@@ -40,6 +41,10 @@ public class GameManager : MonoBehaviour
         
     }
 
+    public void Reset()
+    {
+        Application.LoadLevel(Application.loadedLevel);
+    }
     private void ChangeState(GameState newState)
     {
         _state = newState;
