@@ -8,6 +8,7 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 using UnityEngine.SceneManagement;
 using TMPro;
+using YG;
 
 public class GameManager : MonoBehaviour
 {
@@ -21,10 +22,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int _winCondition = 2048;
     [SerializeField] private GameObject _winScreen, _loseScreen;
     [SerializeField] private TextMeshProUGUI _textCurrentScore;
-    [SerializeField] private TextMeshProUGUI _textHighScore;
+    [SerializeField] public TextMeshProUGUI _textHighScore;
 
     private int _currentScore = 0;
-    private int _highScore = 0;
+    public int _highScore = 0;
 
     private List<Node> _nodes;
     private List<Block> _blocks;
@@ -34,6 +35,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         ChangeState(GameState.GenerateLevel);
+        LoadScore();
     }
 
     private void Update()
@@ -52,6 +54,23 @@ public class GameManager : MonoBehaviour
     {
         Application.LoadLevel(Application.loadedLevel);
     }
+
+    public void SaveScore()
+    {
+        YandexGame.savesData.highScore = _highScore;
+        YandexGame.SaveProgress();
+    }
+    public void LoadScore()
+    {
+        YandexGame.LoadProgress();
+        _highScore = YandexGame.savesData.highScore;
+    }
+
+    public void ResetScore()
+    {
+        YandexGame.ResetSaveProgress();
+    }
+
     private void ChangeState(GameState newState)
     {
         _state = newState;
@@ -70,9 +89,11 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.Win:
                 _winScreen.SetActive(true);
+                SaveScore();
                 break;
             case GameState.Lose:
                 _loseScreen.SetActive(true);
+                SaveScore();
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
@@ -216,3 +237,4 @@ public enum GameState
     Win,
     Lose
 }
+
