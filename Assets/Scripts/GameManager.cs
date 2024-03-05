@@ -158,6 +158,7 @@ public class GameManager : MonoBehaviour
         var orderedBlocks = _blocks.OrderBy(b => b.Pos.x)
             .ThenBy(b => b.Pos.y).ToList();
         if (dir == Vector2.right || dir == Vector2.up) orderedBlocks.Reverse();
+        AudioManager.Instance.PlayEffects(AudioManager.Instance.blockMovement, true);
 
         foreach (var block in orderedBlocks)
         {
@@ -173,7 +174,7 @@ public class GameManager : MonoBehaviour
                     if (possibleNode.OccupiedBlock != null && possibleNode.OccupiedBlock.CanMerge(block.Value))
                     {
                         block.MergeBlock(possibleNode.OccupiedBlock);
-                        
+                        AudioManager.Instance.PlayEffects(AudioManager.Instance.blockMerge, true);
                     }
                     else if (possibleNode.OccupiedBlock == null) next = possibleNode;
                     //None hit? End do while loop
