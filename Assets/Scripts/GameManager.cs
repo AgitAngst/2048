@@ -9,6 +9,7 @@ using Random = UnityEngine.Random;
 using UnityEngine.SceneManagement;
 using TMPro;
 using YG;
+using Lean.Touch;
 
 public class GameManager : MonoBehaviour
 {
@@ -32,29 +33,42 @@ public class GameManager : MonoBehaviour
     private List<Block> _blocks;
     private GameState _state;
     private int _round;
+
+    private Vector2 test;
     private BlockType GetBlockTypeByValue(int value) => _types.First(t => t.Value == value);
     void Start()
     {
         ChangeState(GameState.GenerateLevel);
         LoadScore();
     }
+    private void OnEnable()
+    {
+       LeanTouch.OnFingerSwipe += SwipeHandle;
+    }
 
+    private void OnDisable()
+    {
+       LeanTouch.OnFingerSwipe -= SwipeHandle;
+    }
     private void Update()
     {
         if (_state != GameState.WaitingInputs) return;
 
         if (Input.GetKeyDown(KeyCode.LeftArrow)) Shift(Vector2.left);
-        if (Input.GetKeyDown(KeyCode.A)) Shift(Vector2.left);
         if (Input.GetKeyDown(KeyCode.RightArrow)) Shift(Vector2.right);
-        if (Input.GetKeyDown(KeyCode.D)) Shift(Vector2.right);
         if (Input.GetKeyDown(KeyCode.UpArrow)) Shift(Vector2.up);
-        if (Input.GetKeyDown(KeyCode.W)) Shift(Vector2.up);
         if (Input.GetKeyDown(KeyCode.DownArrow)) Shift(Vector2.down);
+
+        if (Input.GetKeyDown(KeyCode.A)) Shift(Vector2.left);
+        if (Input.GetKeyDown(KeyCode.D)) Shift(Vector2.right);
+        if (Input.GetKeyDown(KeyCode.W)) Shift(Vector2.up);
         if (Input.GetKeyDown(KeyCode.S)) Shift(Vector2.down);
 
+    }
 
-
-
+    private void SwipeHandle(LeanFinger finger)
+    {
+        if (finger == null) return;
 
     }
 
@@ -204,6 +218,22 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void ShiftUP()
+    {
+        Shift(Vector2.up);
+    }
+    public void ShiftDOWN()
+    {
+        Shift(Vector2.down);
+    }
+    public void ShiftLEFT()
+    {
+        Shift(Vector2.left);
+    }
+    public void ShiftRIGHT()
+    {
+        Shift(Vector2.right);
+    }
     void MergeBlocks(Block baseBlock, Block mergingBlock)
     {
         SpawnBlock(baseBlock.Node, baseBlock.Value *2);
