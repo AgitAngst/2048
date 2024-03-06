@@ -138,7 +138,7 @@ public class AudioManager : MonoBehaviour
 		}
 	}
 
-	public void MuteEfx()
+	public void MuteSfx()
 	{
 		if (muteSFX)
 		{

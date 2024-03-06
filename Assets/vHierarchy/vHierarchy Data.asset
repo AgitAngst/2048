@@ -26,6 +26,9 @@ MonoBehaviour:
         - globalObjectIdString: GlobalObjectId_V1-2-2cda990e2423bbf4892e6590ba056729-1156818008-0
         - globalObjectIdString: GlobalObjectId_V1-2-2cda990e2423bbf4892e6590ba056729-145324035-0
         - globalObjectIdString: GlobalObjectId_V1-2-2cda990e2423bbf4892e6590ba056729-953625910-0
+        - globalObjectIdString: GlobalObjectId_V1-2-2cda990e2423bbf4892e6590ba056729-1327021255-0
+        - globalObjectIdString: GlobalObjectId_V1-2-2cda990e2423bbf4892e6590ba056729-1221822544-0
+        - globalObjectIdString: GlobalObjectId_V1-2-2cda990e2423bbf4892e6590ba056729-1165879213-0
         values:
         - colorIndex: 3
           iconNameOrGuid: 
@@ -38,8 +41,14 @@ MonoBehaviour:
         - colorIndex: 0
           iconNameOrGuid: Camera Icon
         - colorIndex: 0
-          iconNameOrGuid: Folder Icon
+          iconNameOrGuid: PreMatQuad
         - colorIndex: 0
           iconNameOrGuid: cs Script Icon
         - colorIndex: 0
           iconNameOrGuid: AudioSource Icon
+        - colorIndex: 0
+          iconNameOrGuid: PreMatQuad
+        - colorIndex: 0
+          iconNameOrGuid: PreMatQuad
+        - colorIndex: 0
+          iconNameOrGuid: PreMatQuad
