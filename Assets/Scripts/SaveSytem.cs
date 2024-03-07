@@ -7,6 +7,13 @@ using YG;
 public class SaveSytem : MonoBehaviour
 {
     public GameManager GameManager;
+
+    string lbName;
+    string lbPhotoSize;
+    int playerMaxQuanity;
+    int playerMaxQuanityTop;
+    int playerMaxQuanityAround;
+
     // Подписываемся на событие GetDataEvent в OnEnable
     private void OnEnable() => YandexGame.GetDataEvent += LoadSettings;
 
@@ -24,7 +31,6 @@ public class SaveSytem : MonoBehaviour
         {
             // Если запустился, то выполняем Ваш метод для загрузки
             LoadSettings();
-
             // Если плагин еще не прогрузился, то метод не выполнится в методе Start,
             // но он запустится при вызове события GetDataEvent, после прогрузки плагина
         }
@@ -49,5 +55,18 @@ public class SaveSytem : MonoBehaviour
 
         // Теперь остаётся сохранить данные
         YandexGame.SaveProgress();
+    }
+
+    public void SaveLeaderBoard4x4()
+    {
+
+        YandexGame.NewLeaderboardScores("4x4", GameManager._highScore);
+    }
+    public void GetLeaderBoard4x4()
+    {
+        if (YandexGame.initializedLB)
+        {
+            YandexGame.GetLeaderboard(lbName,playerMaxQuanity,playerMaxQuanityTop,playerMaxQuanityAround,lbPhotoSize);
+        }
     }
 }

@@ -304,51 +304,6 @@ MonoBehaviour:
   ignoreStartedOverGui: 1
   ignoreIsOverGui: 0
   requiredSelectable: {fileID: 0}
---- !u!1 &145324035
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 145324036}
-  - component: {fileID: 145324037}
-  m_Layer: 0
-  m_Name: Scripts
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &145324036
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 145324035}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &145324037
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 145324035}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffce2a8c9a170734b9edb5d14e74e223, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  directionText: {fileID: 605882109}
 --- !u!114 &165947112 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1780206225, guid: 5af0c10363f8ec548bcdca667cd209f6, type: 3}
@@ -1291,7 +1246,7 @@ Transform:
   - {fileID: 2025154021}
   - {fileID: 1338208081}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &953625912
 MonoBehaviour:
@@ -3861,7 +3816,7 @@ Transform:
   - {fileID: 688472491}
   - {fileID: 1507180999}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2132724769
 PrefabInstance:
@@ -3896,7 +3851,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1855719502567200741, guid: 2a9006d83bcb5d14e93f35b7192d3ab4, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1855719502567200741, guid: 2a9006d83bcb5d14e93f35b7192d3ab4, type: 3}
       propertyPath: m_AnchorMax.x
@@ -4008,6 +3963,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIBlock
       objectReference: {fileID: 0}
+    - target: {fileID: 1855719502567200740, guid: 2a9006d83bcb5d14e93f35b7192d3ab4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1855719502567200741, guid: 2a9006d83bcb5d14e93f35b7192d3ab4, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -4018,7 +3977,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1855719502567200741, guid: 2a9006d83bcb5d14e93f35b7192d3ab4, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1855719502567200741, guid: 2a9006d83bcb5d14e93f35b7192d3ab4, type: 3}
       propertyPath: m_AnchorMax.x

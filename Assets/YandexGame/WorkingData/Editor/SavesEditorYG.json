@@ -1,8 +1,8 @@
 {
-  "idSave": 94,
+  "idSave": 99,
   "isFirstSession": false,
   "language": "ru",
-  "promptDone": false,
+  "promptDone": true,
   "money": 412411,
   "newPlayerName": "",
   "openLevels": [
