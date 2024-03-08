@@ -65,7 +65,7 @@ public class AudioManager : MonoBehaviour
     }
     void OnApplicationFocus(bool b)
     {
-        Debug.Log("application focus: " + b);
+        print("application focus: " + b);
         isFocused = b;
     }
     public void PlayMusic(AudioClip clip)

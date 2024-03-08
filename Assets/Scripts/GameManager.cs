@@ -24,10 +24,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _winScreen, _loseScreen;
     [SerializeField] private TextMeshProUGUI _textCurrentScore;
     [SerializeField] public TextMeshProUGUI _textHighScore;
+    [SerializeField] public TextMeshProUGUI[] _textHighScoresDupli;
     [SerializeField] public SaveSytem saveSytem;
 
     private int _currentScore = 0;
-    public int _highScore = 0;
+    [HideInInspector] public int _highScore = 0;
 
     private List<Node> _nodes;
     private List<Block> _blocks;
@@ -114,6 +115,10 @@ public class GameManager : MonoBehaviour
             case GameState.Lose:
                 _loseScreen.SetActive(true);
                 SaveScore();
+                foreach (var item in _textHighScoresDupli)
+                {
+                    item.text = _highScore.ToString();
+                }
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
@@ -148,7 +153,7 @@ public class GameManager : MonoBehaviour
             SpawnBlock(node, Random.value > 0.8f ? 4:2);
         }
 
-        if (freeNodes.Count() == 1)
+        if (freeNodes.Count() == 0)
         {
             //Lost
             ChangeState(GameState.Lose);

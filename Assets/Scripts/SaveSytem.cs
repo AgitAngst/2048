@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json.Linq;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using YG;
 
@@ -13,6 +14,7 @@ public class SaveSytem : MonoBehaviour
     int playerMaxQuanity;
     int playerMaxQuanityTop;
     int playerMaxQuanityAround;
+    public static SaveSytem instance;
 
     // Подписываемся на событие GetDataEvent в OnEnable
     private void OnEnable() => YandexGame.GetDataEvent += LoadSettings;
@@ -26,6 +28,17 @@ public class SaveSytem : MonoBehaviour
     }
     private void Start()
     {
+
+          if (instance == null)
+            {
+                instance = this;
+            }
+            else if (instance == this)
+            {
+                Destroy(gameObject);
+            }
+
+        
         // Проверяем запустился ли плагин
         if (YandexGame.SDKEnabled == true)
         {
