@@ -10,6 +10,7 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using YG;
 using Lean.Touch;
+using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour
 {
@@ -34,11 +35,18 @@ public class GameManager : MonoBehaviour
     private List<Block> _blocks;
     private GameState _state;
     private int _round;
-
+    public static GameManager instance;
     private Vector2 test;
     private BlockType GetBlockTypeByValue(int value) => _types.First(t => t.Value == value);
+
+    private void Awake()
+    {
+        
+
+    }
     void Start()
     {
+        
         ChangeState(GameState.GenerateLevel);
         LoadScore();
     }
@@ -75,7 +83,8 @@ public class GameManager : MonoBehaviour
 
     public void Reset()
     {
-        Application.LoadLevel(Application.loadedLevel);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //Application.LoadLevel(Application.loadedLevel);
     }
 
     public void SaveScore()

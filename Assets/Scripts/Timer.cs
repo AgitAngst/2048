@@ -11,18 +11,11 @@ public class Timer : MonoBehaviour
     public bool timerIsRunning = false;
     public TextMeshProUGUI timeText;
     public static Timer instance = null;
-    void Start()
-    {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else if (instance == this)
-        {
-            Destroy(gameObject);
-        }
+    [SerializeField] public SaveSytem saveSytem;
 
-        DontDestroyOnLoad(gameObject);
+    void Awake()
+    {
+        
     }
 
     void Update()
@@ -36,7 +29,7 @@ public class Timer : MonoBehaviour
             else
             {
                 print("Auto-save!");
-                SaveSytem.instance.SaveSettings();
+                saveSytem.SaveSettings();
                 timeRemaining = 10f;
             }
         }

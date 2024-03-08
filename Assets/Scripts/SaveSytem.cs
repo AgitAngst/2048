@@ -25,20 +25,11 @@ public class SaveSytem : MonoBehaviour
 
     private void Awake()
     {
+        
+
     }
     private void Start()
     {
-
-          if (instance == null)
-            {
-                instance = this;
-            }
-            else if (instance == this)
-            {
-                Destroy(gameObject);
-            }
-
-        
         // Проверяем запустился ли плагин
         if (YandexGame.SDKEnabled == true)
         {

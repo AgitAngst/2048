@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8150072891552313621}
   - component: {fileID: 8150072891552313622}
+  - component: {fileID: 1705254308}
+  - component: {fileID: 1705254310}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -72,3 +74,43 @@ MonoBehaviour:
     Color: {r: 0.76862746, g: 0.16470589, b: 0.03529412, a: 1}
   - Value: 2048
     Color: {r: 0.827451, g: 0.23529412, b: 0.9254902, a: 1}
+  - Value: 4096
+    Color: {r: 1, g: 1, b: 1, a: 1}
+  _travelTime: 0.25
+  _winCondition: 2048
+  _winScreen: {fileID: 0}
+  _loseScreen: {fileID: 0}
+  _textCurrentScore: {fileID: 0}
+  _textHighScore: {fileID: 0}
+  _textHighScoresDupli:
+  - {fileID: 0}
+  saveSytem: {fileID: 1705254308}
+  _highScore: 11
+--- !u!114 &1705254308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8150072891552313623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 221f729621ef9b04791805e3e8cb47d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameManager: {fileID: 8150072891552313622}
+--- !u!114 &1705254310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8150072891552313623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cfe95fdab218a944830bf3cd216ca71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeRemaining: 10
+  timerIsRunning: 1
+  timeText: {fileID: 0}
