@@ -1,2 +1,2 @@
-Build path: F:/git/2048/Builds/1
-Build number: 1
+Build path: F:/git/2048/Builds/3
+Build number: 3

@@ -34,6 +34,16 @@ public class AudioManager : MonoBehaviour
 	private bool isMusicPlaying;
     public static event Action MusicToggleEvent;
 
+
+    private void OnEnable()
+    {
+		MusicToggleEvent += PlayRandomMusic;
+    }
+
+    private void OnDisable()
+    {
+        MusicToggleEvent -= PlayRandomMusic;
+    }
     private void Awake()
 	{
 		if (Instance == null)
@@ -58,10 +68,7 @@ public class AudioManager : MonoBehaviour
 
     private void Update()
     {
-		if (isMusicPlaying && !musicSource.isPlaying)
-		{
-			PlayRandomMusic();
-		}  
+		
     }
     void OnApplicationFocus(bool b)
     {
