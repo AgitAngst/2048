@@ -1535,6 +1535,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clickSound: {fileID: 8300000, guid: 012f8efdb01e29a4498ecd62eb1a46c6, type: 3}
+  _audioManager: {fileID: 953625912}
 --- !u!114 &1097158325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2257,6 +2258,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clickSound: {fileID: 8300000, guid: 012f8efdb01e29a4498ecd62eb1a46c6, type: 3}
+  _audioManager: {fileID: 953625912}
 --- !u!114 &1611783462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2560,6 +2562,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clickSound: {fileID: 8300000, guid: 012f8efdb01e29a4498ecd62eb1a46c6, type: 3}
+  _audioManager: {fileID: 953625912}
 --- !u!114 &1762653411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2594,6 +2597,7 @@ MonoBehaviour:
   sfxOnSprite: {fileID: 0}
   sfxOffSprite: {fileID: 0}
   spriteButton: {fileID: 165947112}
+  _audioManager: {fileID: 953625912}
 --- !u!1 &1825968604
 GameObject:
   m_ObjectHideFlags: 0
@@ -3349,6 +3353,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clickSound: {fileID: 8300000, guid: 012f8efdb01e29a4498ecd62eb1a46c6, type: 3}
+  _audioManager: {fileID: 953625912}
 --- !u!114 &1941038754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3379,6 +3384,7 @@ MonoBehaviour:
   sfxOnSprite: {fileID: 21300000, guid: 30f4394c65296ad42938ec3e3b6dc298, type: 3}
   sfxOffSprite: {fileID: 21300000, guid: 96b189997bc6e334d92234b3e5b80ea0, type: 3}
   spriteButton: {fileID: 1941038750}
+  _audioManager: {fileID: 953625912}
 --- !u!1 &2025154020
 GameObject:
   m_ObjectHideFlags: 0
@@ -3995,6 +4001,10 @@ PrefabInstance:
       propertyPath: _loseScreen
       value: 
       objectReference: {fileID: 612371020}
+    - target: {fileID: 8150072891552313622, guid: 409915ac1cfe5fa458d9d03843953be1, type: 3}
+      propertyPath: _audioManager
+      value: 
+      objectReference: {fileID: 953625912}
     - target: {fileID: 8150072891552313622, guid: 409915ac1cfe5fa458d9d03843953be1, type: 3}
       propertyPath: _textHighScore
       value: 

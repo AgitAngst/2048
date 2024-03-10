@@ -3,8 +3,8 @@ using System;
 using YG;
 public class AudioManager : MonoBehaviour
 {
-	public static AudioManager Instance;
-
+	//public static AudioManager Instance;
+	
 	[Header("Audio Sources")]
 	public AudioSource sfxSource;
 
@@ -46,15 +46,15 @@ public class AudioManager : MonoBehaviour
     }
     private void Awake()
 	{
-		if (Instance == null)
-		{
-			Instance = this;
-		}
-		else if (Instance != this)
-		{
-			UnityEngine.Object.Destroy(base.gameObject);
-		}
-        UnityEngine.Object.DontDestroyOnLoad(base.gameObject);
+		//if (Instance == null)
+		//{
+		//	Instance = this;
+		//}
+		//else if (Instance != this)
+		//{
+		//	UnityEngine.Object.Destroy(base.gameObject);
+		//}
+        //UnityEngine.Object.DontDestroyOnLoad(base.gameObject);
 	}
 
 	private void Start()
@@ -89,7 +89,7 @@ public class AudioManager : MonoBehaviour
 
 	public void PlayRandomMusic()
 	{
-        var m = UnityEngine.Random.Range(0, AudioManager.Instance._gameMusic.Length);
+        var m = UnityEngine.Random.Range(0,_gameMusic.Length);
         if (!muteMusic)
         {
             musicSource.clip = _gameMusic[m];
@@ -118,7 +118,7 @@ public class AudioManager : MonoBehaviour
             }
 			else
 			{
-				AudioManager.Instance.sfxSource.GetComponent<AudioSource>().pitch = UnityEngine.Random.Range(0.75f,1f);
+				sfxSource.GetComponent<AudioSource>().pitch = UnityEngine.Random.Range(0.75f,1f);
 				sfxSource.PlayOneShot(clip);
 
             }

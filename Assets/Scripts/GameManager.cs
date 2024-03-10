@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     private Vector2 test;
     private BlockType GetBlockTypeByValue(int value) => _types.First(t => t.Value == value);
+    public AudioManager _audioManager;
 
     private void Awake()
     {
@@ -186,7 +187,7 @@ public class GameManager : MonoBehaviour
         var orderedBlocks = _blocks.OrderBy(b => b.Pos.x)
             .ThenBy(b => b.Pos.y).ToList();
         if (dir == Vector2.right || dir == Vector2.up) orderedBlocks.Reverse();
-        AudioManager.Instance.PlayEffects(AudioManager.Instance.blockMovement, true);
+        _audioManager.PlayEffects(_audioManager.blockMovement, true);
 
         foreach (var block in orderedBlocks)
         {
@@ -202,7 +203,7 @@ public class GameManager : MonoBehaviour
                     if (possibleNode.OccupiedBlock != null && possibleNode.OccupiedBlock.CanMerge(block.Value))
                     {
                         block.MergeBlock(possibleNode.OccupiedBlock);
-                        AudioManager.Instance.PlayEffects(AudioManager.Instance.blockMerge, true);
+                        _audioManager.PlayEffects(_audioManager.blockMerge, true);
                     }
                     else if (possibleNode.OccupiedBlock == null) next = possibleNode;
                     //None hit? End do while loop

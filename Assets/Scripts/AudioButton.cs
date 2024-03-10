@@ -14,29 +14,30 @@ public class AudioButton : MonoBehaviour
 	public Sprite sfxOffSprite;
 
 	public Image spriteButton;
+    public AudioManager _audioManager;
 
-	private void Start()
+    private void Start()
 	{
 		SetButton();
 	}
 
 	public void MusicButtonClicked()
 	{
-		AudioManager.Instance.MuteMusic();
-		AudioManager.Instance.PlayEffects(AudioManager.Instance.buttonClick,false);
+        _audioManager.MuteMusic();
+        _audioManager.PlayEffects(_audioManager.buttonClick,false);
 		SetButton();
 	}
 
 	public void SfxButtonClicked()
 	{
-		AudioManager.Instance.MuteSfx();
-		AudioManager.Instance.PlayEffects(AudioManager.Instance.buttonClick, false);
+		_audioManager.MuteSfx();
+        _audioManager.PlayEffects(_audioManager.buttonClick, false);
 		SetButton();
 	}
 
 	private void SetButton()
 	{
-		if ((!AudioManager.Instance.IsMusicMute() && !SFX) || (!AudioManager.Instance.IsSfxMute() && SFX))
+		if ((!_audioManager.IsMusicMute() && !SFX) || (!_audioManager.IsSfxMute() && SFX))
 		{
 			if (SFX)
 			{

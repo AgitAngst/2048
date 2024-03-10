@@ -7,15 +7,15 @@ using UnityEngine.UI;
 public class UIButton : MonoBehaviour
 {
     public AudioClip clickSound;
-
+    public AudioManager _audioManager;
     public void PlaySound()
     {
-        AudioManager.Instance.PlayEffects(clickSound,false);
+        _audioManager.PlayEffects(clickSound,false);
     }
 
     public void PlaySoundRandomPitch()
     {
-        AudioManager.Instance.PlayEffects(clickSound, true);
+        _audioManager.PlayEffects(clickSound, true);
     }
 
 }
